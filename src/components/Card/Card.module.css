@@ -1,0 +1,12 @@
+.Card{
+   border: 8px solid rgba(83, 4, 59, 0.801);
+   width: 22%;
+   border: 2px solid darkslategrey ;
+}
+img{
+    width: 100%;
+    display: flex;
+}
+.styles{
+    display: flex;
+}

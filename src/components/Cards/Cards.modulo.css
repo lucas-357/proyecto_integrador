@@ -1,0 +1,6 @@
+.Cards_container{
+    align-items: center;
+    display: inline-flex;
+    background-color: rgb(49, 45, 45);
+    opacity: 1;
+}
