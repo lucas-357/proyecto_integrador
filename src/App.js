@@ -1,66 +1,29 @@
-import './App.css';
-import Cards from './components/Cards/Cards.jsx';
-import Nav from './components/Nav/Nav';
-import { useEffect, useState } from 'react';
-import {Routes, Route, useNavigate, useLocation} from 'react-router-dom';
-import About from './components/About/About';
-import Detail from './components/Details/Detail';
-import Form from './components/Form/Form';
+/* 1️⃣ ***COMPONENTE APP*** 1️⃣
+Implementar el componente App. En este ejercicio tendrás que crear diferentes rutas para algunos componentes. 
+¡Ten en cuenta los nombres y las especificaciones de cada uno!
 
-function App() {
-const [characters, setCharacters] = useState([]);
-const location = useLocation();
-const [access, setAccess] = useState(false);
-const navigate = useNavigate();
+REQUISITOS
+🟢 El componente Nav debe renderizarse en todas las rutas.
+🟢 El componente Home debe renderizarse en la ruta "/".
+🟢 El componente BandDetail debe renderizarse en la ruta "/band/:id".
+🟢 El componente CreateBand debe renderizarse en la ruta "/band/create".
+*/
 
-const username = 'lucas@soyhenry.com'
-const password = '123abc'
-const login=(userData)=>{
-   if(userData.username === username && userData.password === password){
-      setAccess(true);
-      navigate('/home');
-   }
-}
+import React from "react";
+import Nav from "./components/Nav/Nav";
+import {Route, Routes} from "react-router-dom";
+import Home from "./components/Home/Home"
+import BandDetail from "./components/BandDetail/BandDetail";
+import CreateBand from "./components/CreateBand/CreateBand";
 
-useEffect(() => {
-   !access && navigate('/');
- }, [access, navigate]);
- 
-
-
- function onSearch(id){
-   const url="https://rickandmortyapi.com/api";
-   fetch(`${url}/character/${id}`)
-   .then((response)=>response.json())
-   .then((data)=>{
-     if (data.name && !characters.find((char)=>char.id === data.id)){
-       setCharacters((oldChar)=>[...oldChar,data]);
-     }else if (characters.find((char)=>char.id === data.id)){
-       window.alert("La carta ya esta agregada");
-     }else{
-       window.alert("La carta no existe");
-     }
-   })
- }
-
-const onClose=(id)=>{
-  setCharacters((oldChar)=>{
-    return oldChar.filter((character)=>character.id !== id)
-});
-}
-   return (
-      <div className='App' style={{padding: '25px'}} >
-        {location.pathname=== '/' ? <Form login={login}/> : <Nav onSearch={onSearch} />}
-         <Routes>
-          <Route path='/home' element={<Cards characters={characters} onClose={onClose}/>}/>
-          <Route path='about' element={<About/>}/>
-          <Route path='/detail/:detailId' element={<Detail/>}/>
-          <Route path='Form' element={<Form/>}/>
-         </Routes>
-         
-      </div>
-   );
-   
-}
-
+const App = () => {
+   return (<div> 
+      <Nav/>
+      <Routes>
+        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/band/create" element={<CreateBand/>} />
+        <Route exact path="/band/:id" element={<BandDetail/>} />
+      </Routes>
+   </div>)
+};
 export default App;

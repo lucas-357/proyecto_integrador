@@ -1,16 +1,23 @@
-import SearchBar from "../SearchBar/SearchBar";
-import {Link} from "react-router-dom";
-import "./Nav.modulo.css"
-const Nav = ({onSearch})=>{
-    return(
-        <div class="nav">
-            <Link to='/'> LOGOUT </Link>
-            <Link to='/about'> ABOUT </Link>
-            <Link to='/home'> HOME </Link>
-            <Link to='/favorite'> FAVORITE </Link>
-            <SearchBar onSearch={onSearch}/>
-        </div>
-    )
+/* 2️⃣ ***COMPONENTE NAV*** 2️⃣
+Implementar el componente Nav. En este ejercicio tendrás que asociar dos etiquetas Link to='' a 
+distintos elementos.
+
+REQUISITOS
+🟢 El primer <Link> debe dirigir a "/" con el texto "Home".
+🟢 El segundo <Link> debe dirigir a "/band/create" con el texto "Create Band".
+
+IMPORTANTE
+❗Este componente debe ser funcional.
+*/
+import { Link } from 'react-router-dom';
+import './nav.css';
+import React from 'react';
+
+const Nav = () => {
+   return (<div className='nav'>
+         <Link to="/">Home</Link>
+         <Link to="/band/create">Create Band</Link>
+   </div>)
 };
 
 export default Nav;
